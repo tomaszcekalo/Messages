@@ -1,5 +1,5 @@
-
 using Messages.Models;
+using Messages.Services;
 
 namespace Messages
 {
@@ -16,6 +16,8 @@ namespace Messages
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddSqlite<DataContext>("Data Source=.\\messages.db");
+            //builder.Services.AddSingleton<ICounterService, CounterService>();
+            builder.Services.AddTransient<ICounterService, CounterService>();
 
             var app = builder.Build();
 
@@ -28,9 +30,7 @@ namespace Messages
 
             app.UseAuthorization();
 
-
             app.MapControllers();
-            
 
             app.Run();
         }

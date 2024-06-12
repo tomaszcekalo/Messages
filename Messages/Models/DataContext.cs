@@ -19,5 +19,6 @@ namespace Messages.Models
         }
 
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }
