@@ -1,9 +1,11 @@
-﻿using Messages.Hateoas;
+﻿using Messages.Filters;
+using Messages.Hateoas;
 using Messages.Models;
 using Messages.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 namespace Messages.Controllers
 {
@@ -22,6 +24,8 @@ namespace Messages.Controllers
         public DataContext DataContext { get; }
 
         [HttpGet]
+        [ResponseHeader("Filter-Header", "Filter Value")]
+        [BasicLogin]
         public IActionResult GetMessages()
         {
             return Ok(DataContext.Messages.ToList());
